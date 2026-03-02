@@ -1,0 +1,17 @@
+# Write your MySQL query statement below
+select s.name
+from salesperson s
+left join orders o
+on s.sales_id=o.sales_id
+left join company c
+on c.com_id=o.com_id
+and c.name='RED'
+group by s.name
+having sum(
+    case when
+        c.name='RED'
+            then 1
+        else
+            0
+        end
+)=0;
